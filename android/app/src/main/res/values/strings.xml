@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="accessibility_service_description">SmartContent needs Accessibility permission to detect when you open distracting apps and block them according to your schedule.</string>
+</resources>
