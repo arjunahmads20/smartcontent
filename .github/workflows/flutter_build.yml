@@ -28,16 +28,12 @@ jobs:
           channel: 'stable' # Uses the stable channel of Flutter
           # flutter-version: '3.24.0' # Optional: Pin a specific Flutter version if needed
       
-      # 3b. Change the package name
-      - name: Change Package Name
-        run: flutter pub run change_app_package_name:main com.sayursa.sayursa
-
       # 4. Install dependencies
       - name: Install dependencies
         run: flutter pub get
 
       - name: Change Package Name
-        run: flutter pub run change_app_package_name:main com.sayursa.sayursa
+        run: flutter pub run change_app_package_name:main com.smartcontent.smartcontent
 
       - name: Clean
         run: flutter clean
