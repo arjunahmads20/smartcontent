@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_theme.dart';
@@ -25,6 +25,17 @@ class ContentDetailScreen extends ConsumerStatefulWidget {
 class _ContentDetailScreenState extends ConsumerState<ContentDetailScreen> {
   late YoutubePlayerController _controller;
 
+  // Extract YouTube video ID from various URL formats
+  static String _extractVideoId(String url) {
+    final regExp = RegExp(
+      r'^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*',
+      caseSensitive: false,
+    );
+    final match = regExp.firstMatch(url);
+    final id = match?.group(2);
+    return (id != null && id.length == 11) ? id : '';
+  }
+
   // --- Timer & completion state ---
   Timer? _timer;
   int _secondsWatched = 0;
@@ -41,13 +52,14 @@ class _ContentDetailScreenState extends ConsumerState<ContentDetailScreen> {
   @override
   void initState() {
     super.initState();
-    final videoId = YoutubePlayer.convertUrlToId(widget.content.url) ?? '';
-    _controller = YoutubePlayerController(
-      initialVideoId: videoId,
-      flags: const YoutubePlayerFlags(
-        autoPlay: false,
+    final videoId = _extractVideoId(widget.content.url);
+    _controller = YoutubePlayerController.fromVideoId(
+      videoId: videoId,
+      autoPlay: false,
+      params: const YoutubePlayerParams(
         mute: false,
-        disableDragSeek: true,
+        showControls: true,
+        showFullscreenButton: true,
       ),
     );
 
@@ -92,7 +104,7 @@ class _ContentDetailScreenState extends ConsumerState<ContentDetailScreen> {
   @override
   void dispose() {
     _timer?.cancel();
-    _controller.dispose();
+    _controller.close();
     super.dispose();
   }
 
@@ -382,7 +394,7 @@ class _ContentDetailScreenState extends ConsumerState<ContentDetailScreen> {
               ),
               const SizedBox(height: 20),
               Text(
-                'Reward Claimed! 🎉',
+                'Reward Claimed! ߎ',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -497,14 +509,8 @@ class _ContentDetailScreenState extends ConsumerState<ContentDetailScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Video Player
-                  YoutubePlayerBuilder(
-                    player: YoutubePlayer(
-                      controller: _controller,
-                      showVideoProgressIndicator: true,
-                    ),
-                    builder: (context, player) {
-                      return player;
-                    },
+                  YoutubePlayer(
+                    controller: _controller,
                   ),
 
                   Padding(
@@ -631,7 +637,7 @@ class _ContentDetailScreenState extends ConsumerState<ContentDetailScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Content Completed! 🎉',
+                    'Content Completed! ߎ',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
