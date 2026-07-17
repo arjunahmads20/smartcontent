@@ -81,10 +81,18 @@ class AuthRepository {
     try {
       final response = await _dio.get(ApiConstants.me);
       return User.fromJson(response.data);
-    } catch (e) {
-      // If fetching user fails (e.g. token expired), we should ideally refresh.
-      // For now, clear token and return null to force re-login.
-      await logout();
+    } on DioException catch (e) {
+      // The Dio interceptor already attempted a token refresh before this catch
+      // fires. If we still get a 401 here it means the refresh token is also
+      // expired/blacklisted — the interceptor will have cleared both tokens.
+      // For any other error (network timeout, server error) we keep the stored
+      // tokens so the user isn't unnecessarily logged out.
+      if (e.response?.statusCode == 401) {
+        return null;
+      }
+      // Non-auth error (e.g. no internet) — stay logged in and try again later.
+      return null;
+    } catch (_) {
       return null;
     }
   }
