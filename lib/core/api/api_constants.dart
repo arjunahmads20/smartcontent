@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 class ApiConstants {
   static String get baseUrl {
-    return 'https://smartcontent.pythonanywhere.com/api/v1';
     if (kIsWeb) {
       return 'http://localhost:8000/api/v1';
     } else if (Platform.isAndroid) {
@@ -17,6 +16,7 @@ class ApiConstants {
   static const String login = '/auth/login/';
   static const String register = '/auth/register/';
   static const String me = '/auth/me/';
+  static const String tokenRefresh = '/auth/token/refresh/';
   
   // Career
   static const String careerDreams = '/career-dreams/';
