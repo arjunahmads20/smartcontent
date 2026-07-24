@@ -1,5 +1,7 @@
 # SmartContent Mobile App
 
+SmartContent is an app that restricts access to highly distracting social media platforms while providing a personalized, gamified learning feed. The content is tailored to the user's specific career aspirations and incorporates a progression system that rewards continuous learning over instant gratification. By transforming wasted scrolling time into productive and rewarding learning experiences, SmartContent helps users take meaningful steps toward achieving their future goals.
+
 This directory contains the Dart source code and UI structure for the SmartContent Flutter application.
 
 ## ⚠️ Important Note: Missing Platform Folders
