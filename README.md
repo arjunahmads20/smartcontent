@@ -1,3 +1,5 @@
+<img src="imapp_icon.png" alt="App Icon" width="500">
+
 # SmartContent
 
 SmartContent is an app that restricts access to highly distracting social media platforms while providing a personalized, gamified learning feed. The content is tailored to the user's specific career aspirations and incorporates a progression system that rewards continuous learning over instant gratification. By transforming wasted scrolling time into productive and rewarding learning experiences, SmartContent helps users take meaningful steps toward achieving their future goals.
