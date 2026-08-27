@@ -1,4 +1,4 @@
-<img src="app_icon.png" alt="App Icon" width="500">
+<img src="app_icon.png" alt="App Icon" width="320">
 
 # SmartContent
 
@@ -49,6 +49,6 @@ The base API URL is defined in `lib/core/api/api_constants.dart`.
 
 ## Screenshots
 
-<img src="screenshots/1.jpg" alt="" width="500">
-<img src="screenshots/2.jpg" alt="" width="500">
+<img src="screenshots/1.jpg" alt="" width="320">
+<img src="screenshots/2.jpg" alt="" width="320">
 
