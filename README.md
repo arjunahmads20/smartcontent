@@ -1,4 +1,4 @@
-<img src="imapp_icon.png" alt="App Icon" width="500">
+<img src="app_icon.png" alt="App Icon" width="500">
 
 # SmartContent
 
@@ -46,3 +46,9 @@ The app follows a feature-first architecture using **Riverpod** for state manage
 The base API URL is defined in `lib/core/api/api_constants.dart`. 
 - By default, it is set to `http://10.0.2.2:8000/api/v1` (which maps to `localhost` on the host machine when using an Android Emulator).
 - If you are running on a physical device, update this to your computer's local IP address (e.g., `http://192.168.1.X:8000/api/v1`).
+
+## Screenshots
+
+<img src="screenshots/1.jpg" alt="" width="500">
+<img src="screenshots/2.jpg" alt="" width="500">
+
